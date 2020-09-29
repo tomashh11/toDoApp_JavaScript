@@ -7,27 +7,22 @@ const listItems = document.getElementsByClassName('task');
 const input = document.querySelector('input');
 const searchInput = document.getElementById('search');
 
-const searchTask = (e) => {
-    const searchText = e.target.value.toLowerCase();
-    let tasks = toDoList;
-    tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText));
+const renderList = () => {
     ul.textContent = "";
-    tasks.forEach(li => ul.appendChild(li));
-};
-
-searchInput.addEventListener('input', searchTask);
-
-const removeTask = (e) => {
-    const index = e.target.parentNode.dataset.key;
-    toDoList.splice(index, 1);
-    renderList();
+    toDoList.forEach((toDoElement, key) => {
+        toDoElement.dataset.key = key;
+        ul.appendChild(toDoElement);
+    });
+    taskNumber.textContent = listItems.length;
 };
 
 const addTask = (e) => {
     e.preventDefault();
 
     const titleTask = input.value;
-    if (titleTask === "") return;
+    if (titleTask === "") {
+        return;
+    }
     const task = document.createElement("li");
     task.className = "task";
     task.innerHTML = titleTask + "<button>Usuń</button>";
@@ -38,13 +33,19 @@ const addTask = (e) => {
     task.querySelector("button").addEventListener("click", removeTask);
 };
 
-const renderList = () => {
+const searchTask = (e) => {
+    const searchText = e.target.value.toLowerCase();
+    let tasks = toDoList;
+    tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText));
     ul.textContent = "";
-    toDoList.forEach((toDoElement, key) => {
-        toDoElement.dataset.key = key;
-        ul.appendChild(toDoElement);
-    });
-    taskNumber.textContent = listItems.length;
+    tasks.forEach(li => ul.appendChild(li));
 };
 
+const removeTask = (e) => {
+    const index = e.target.parentNode.dataset.key;
+    toDoList.splice(index, 1);
+    renderList();
+};
+
+searchInput.addEventListener('input', searchTask);
 form.addEventListener('submit', addTask);
