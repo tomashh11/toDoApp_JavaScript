@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    margin: 20px 0 20px 20px;
+}
+
+.task {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    list-style: square;
+    margin-top: -10px;
+    padding-bottom: 0;
+}
+
+input {
+    margin: 20px 0 0 20px;
+}
+
+button {
+    margin: 20px 0 0 10px;
+    padding: 5px 15px;
+    border: 1px solid royalblue;
+    border-radius: 5px;
+    color: #fff;
+    background-color: royalblue;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: royalblue;
+}
+
+.searchBtn {
+    background-color: forestgreen;
+    color: #fff;
+    border-color: forestgreen;
+}
+
+.searchBtn:hover {
+    background-color: forestgreen;
+    color: #fff;
+    cursor: default;
+    outline: none;
+}
