@@ -4,7 +4,7 @@ const {
 } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CopyPlugin = require('copy-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -17,10 +17,6 @@ module.exports = {
     },
     module: {
         rules: [
-            // {
-            // test: /\.txt$/,
-            // use: 'raw-loader'
-            // },
             {
                 test: /\.css$/,
                 use: [
@@ -31,44 +27,9 @@ module.exports = {
                         options: {
                             plugins: [require('autoprefixer')],
                         }
-                    }
+                    },
                 ]
             },
-            // {
-            //     test: /\.(sass|scss)$/,
-            //     use: [
-            //         MiniCssExtractPlugin.loader,
-            //         'css-loader',
-            //         {
-            //             loader: 'postcss-loader',
-            //             options: {
-            //                 plugins: [require('autoprefixer')],
-            //             }
-            //         },
-            //         'sass-loader'
-            //     ]
-            // },
-            // {
-            //     test: /\.(jpg|png|svg|gif|jpeg)$/,
-            //     use: [{
-            //         loader: 'file-loader',
-            //         options: {
-            //             name: '[name][contenthash:6].[ext]',
-            //             outputPath: 'images',
-            //         }
-            //     },
-            //         {
-            //             loader: 'image-webpack-loader',
-            //             options: {
-            //                 mozjpeg: {
-            //                     quality: 70,
-            //                     progressive: true
-            //                 }
-            //             }
-            //         }
-            //     ]
-            //
-            // },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -87,6 +48,12 @@ module.exports = {
             },
         ]
     },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new CssMinimizerPlugin(),
+        ],
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -96,13 +63,7 @@ module.exports = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename: '[name]-[contenthash].css'
+            filename: 'css/[name]-[contenthash].css'
         }),
-        // new CopyPlugin(
-        //     [{
-        //         from: 'public/images',
-        //         to: 'images'
-        //     }]
-        // )
     ]
 };

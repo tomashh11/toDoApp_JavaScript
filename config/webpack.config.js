@@ -3,6 +3,7 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
@@ -15,27 +16,14 @@ module.exports = {
     },
     devServer: {
         open: true,
-        // contentBase: path.resolve(__dirname, '../', 'public'),
         port: 3000
     },
     module: {
         rules: [
-            // {
-            // test: /\.txt$/,
-            // use: 'raw-loader'
-            // },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             },
-            // {
-            //     test: /\.(sass|scss)$/,
-            //     use: ['style-loader', 'css-loader', 'sass-loader']
-            // },
-            // {
-            //     test: /\.(jpg|png|jpeg)$/,
-            //     use: 'file-loader',
-            // },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -59,13 +47,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "src/index.html",
         }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name]-[contenthash].css'
+        }),
     ]
 };
-
-// "copy-webpack-plugin": "^5.0.4",
-
-// "file-loader": "^4.2.0",
-// "image-webpack-loader": "^6.0.0",
-// "raw-loader": "^3.1.0",
-// "node-sass": "^4.12.0",
-// "sass-loader": "^8.0.0",
