@@ -1,7 +1,7 @@
 # toDoApp_JavaScript
 
 ## PL
-Prost aplikacja "**to do**".  
+Prosta aplikacja "**to do**".  
 Dodajemy zadania za pomocą przycisku "***Dodaj zadanie***".  
 Wyszukujemy zadania za pomocą przycisku "***Wyszukaj zadanie***".  
 Dodatkowo jest wyświetlana ilość zadań na naszej liście.  
